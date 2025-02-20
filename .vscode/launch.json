@@ -1,0 +1,38 @@
+{
+  "version": "2.0.0",
+  "configurations": [
+    {
+      "name": "Template Flutter (DEV)",
+      "request": "launch",
+      "type": "dart",
+      "args": [
+        "--dart-define-from-file=env/dev.json",
+        "--flavor",
+        "development"
+      ]
+    },
+    {
+      "name": "Template Flutter Web (DEV)",
+      "request": "launch",
+      "type": "dart",
+      "args": [
+        "--dart-define-from-file=env/dev.json",
+        "--web-port",
+        "9090",
+        "--web-browser-flag=--disable-web-security",
+      ],
+    },
+    {
+      "name": "Template Flutter Integration Test (DEV)",
+      "request": "launch",
+      "type": "dart",
+      "program": "integration_test/core_test.dart",
+      "toolArgs": [
+        "--dart-define-from-file=env/dev.json",
+        "--flavor",
+        "development",
+        "--verbose"
+      ]
+    }
+  ]
+}
