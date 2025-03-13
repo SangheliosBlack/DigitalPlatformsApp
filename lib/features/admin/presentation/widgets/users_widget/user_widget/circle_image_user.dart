@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_template/core/utils/transform/avatar_name.dart';
+import 'package:flutter_template/features/auth/presentation/providers/auth_provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class AdminUserImageWidget extends StatelessWidget {
+class AdminUserImageWidget extends ConsumerWidget {
 
   const AdminUserImageWidget({
     super.key,
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ref) {
+
+    final authState = ref.read(authProvider);
 
     return Container(
       padding: EdgeInsets.all(3),
@@ -29,10 +34,10 @@ class AdminUserImageWidget extends StatelessWidget {
         ),
         child: Center(
           child: Text(
-            "JL",
+            AvatarName.getAvatarLetters(name: authState.user!.name),
             style: GoogleFonts.quicksand(
               color: Colors.white,
-              fontWeight: FontWeight.w300,
+              fontWeight: FontWeight.w600,
               fontSize: 15
             ),
           ),

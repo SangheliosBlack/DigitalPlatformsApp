@@ -47,12 +47,12 @@ class _AdminAsideMenuState extends State<AdminAsideMenu> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                     
-                      Text("Plataformas Digitales 2025", 
+                      Text("Digital Platforms", 
                       style: GoogleFonts.quicksand(
                         color: Colors.black,
                         fontSize: 12,
                       )),
-                      Text("Tuali | ACMovil", 
+                      Text("Name1 | Name2", 
                       style: GoogleFonts.quicksand(
                         color: Colors.black,
                         fontWeight: FontWeight.bold,
@@ -88,7 +88,7 @@ class _AdminAsideMenuState extends State<AdminAsideMenu> {
                       menuOption: MenuOptionEntity(
                         titulo: "Cerrar sesion",
                         icono: BootstrapIcons.box_arrow_left,
-                        subMenu: [],
+                        subMenuOptions: [],
                         
                       ),
                     ),
@@ -96,7 +96,7 @@ class _AdminAsideMenuState extends State<AdminAsideMenu> {
                       menuOption: MenuOptionEntity(
                         titulo: "Configuracion",
                         icono: BootstrapIcons.gear_wide_connected,
-                        subMenu: []
+                        subMenuOptions: []
                       ),
                     ),
                   ],

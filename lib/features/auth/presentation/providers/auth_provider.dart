@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_template/core/resources/data_state.dart';
 import 'package:flutter_template/core/services/auth_service/authentication_service_provider.dart';
 import 'package:flutter_template/core/services/auth_service/authentication_service_state.dart';
+import 'package:flutter_template/core/services/cache_service/cache_service_impl.dart';
 import 'package:flutter_template/core/services/navigation_service/navigation_service.dart';
-import 'package:flutter_template/features/admin/presentation/screens/admin_home_screen.dart';
+import 'package:flutter_template/features/features/presentation/screens/releases_screen.dart';
 import 'package:flutter_template/features/auth/presentation/providers/auth_state.dart';
 import 'package:flutter_template/features/auth/domain/params/login_params.dart';
+import 'package:flutter_template/features/auth/presentation/providers/load_user_provider.dart';
 import 'package:flutter_template/features/auth/presentation/screen/presentation_screen.dart';
-import 'package:flutter_template/features/point_of_sale/presentation/screens/point_of_sale_screen.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'login_user_provider.dart';
@@ -70,8 +71,27 @@ class Auth extends _$Auth{
 
     }
 
-
   }
+
+  Future<void> loadUser () async {
+
+    try {
+      
+      final useCase = await ref.read(loadUserCaseProvider).execute(params: Object());
+
+      state = state.copyWith(
+        user: useCase.data
+      );
+    
+      return;
+
+    } catch (e) {
+
+      logout();
+      
+    }
+
+  } 
 
   void loadingState() => state = state.copyWith(isLoading: true,errorMessage: "");
 
@@ -109,10 +129,11 @@ class Auth extends _$Auth{
     state.emailController?.clear();
     state.passwordController?.clear();
 
-
     state = state.copyWith(
       authenticationStatus: AuthenticationStatus.notAuthenticated
     );
+
+    CacheServiceImpl().clearAllCache();
 
     _authenticationNavigate();
 
@@ -125,7 +146,7 @@ class Auth extends _$Auth{
     if (state.authenticationStatus == AuthenticationStatus.authenticated) {
 
       //navigate(PointOfSaleScreen.path);
-      navigate(AdminHomeScreen.path);
+      navigate(ReleasesScreen.path);
 
 
     } else if (state.authenticationStatus == AuthenticationStatus.notAuthenticated) {

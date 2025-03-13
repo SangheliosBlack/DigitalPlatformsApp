@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 class AppTheme {
 
-  static const Color primary = Color.fromRGBO(131,175,229	,1);
+  static const Color primary = Color(0xffDD052B);
   static const Color primaryLight = Color.fromRGBO(224, 224, 224, 1);
   static const Color primaryTitle = Color.fromRGBO(117, 117, 117, 1);
   static const Color primaryBody = Color.fromRGBO(247,247,247,1);
@@ -11,7 +11,7 @@ class AppTheme {
   static const Color secondary = Color.fromRGBO(242,242,242,1);
   static const Color error = Color.fromRGBO(194,63,56,1	);
   //static const Color backgroundColor = Color.fromRGBO(245,246,248,1	);
-  static const Color backgroundColor = Color.fromRGBO(228,228,228,1	);
+  static const Color backgroundColor = Colors.white;
   static const Color delete = Color.fromRGBO(225,80,98	, 1);
   static const Color colorFont = Color.fromRGBO(106, 105, 101, 1);
   static const Color success = Color.fromRGBO(91,168,74,1);

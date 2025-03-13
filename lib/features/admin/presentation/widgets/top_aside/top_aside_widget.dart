@@ -11,9 +11,7 @@ class TopAsideWidget extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return Container(
-      margin: EdgeInsets.only(
-        left: 15
-      ),
+    
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(15)

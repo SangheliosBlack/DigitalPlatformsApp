@@ -91,5 +91,22 @@ class HttpClientServiceImpl extends HttpClientService {
     }
     
   }
+  
+  @override
+  Future patch({required String path, Map<String, dynamic>? data}) async {
+    
+    try {
+
+      final Response<dynamic>  response = await _dio.patch(path, data: data);
+
+      return response;
+
+    } on DioException catch (e) {
+
+      throw NetworkException(message: e.response?.statusMessage ?? "", statusCode: e.response!.statusCode?? 0);
+
+    }
+
+  }
 
 }

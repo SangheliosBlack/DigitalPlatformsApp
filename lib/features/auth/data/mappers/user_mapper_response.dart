@@ -1,6 +1,7 @@
+import 'package:flutter_template/features/auth/domain/entities/role_entity.dart';
 import 'package:flutter_template/features/auth/domain/entities/user_entity.dart';
 
-import '../data_transfer_objects/user_dto.dart';
+import '../dtos/user_dto.dart';
 
 class UserMapper {
   
@@ -10,8 +11,9 @@ class UserMapper {
       id: dto.id,
       name: dto.name,
       email: dto.email, 
-      role: roleFromString(dto.role), 
+      role: Role.fromName(dto.role), 
       lastUpdate: dto.lastUpdate,
+      roleName: dto.roleName
     );
 
   }
@@ -23,13 +25,7 @@ class UserMapper {
       email: entity.email, 
       role: entity.role.name,
       lastUpdate: entity.lastUpdate,
+      roleName: entity.roleName
     );
   }
-}
-
-Role roleFromString(String role) {
-  return Role.values.firstWhere(
-    (e) => e.toString().split('.').last == role.toUpperCase(),
-    orElse: () => Role.USER, 
-  );
 }

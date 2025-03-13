@@ -4,7 +4,7 @@ import 'package:flutter_template/core/config/router/route_observer.dart';
 import 'package:flutter_template/core/utils/transitions/custom_transitions.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../features/admin/presentation/screens/screens.dart';
+import '../../../../features/features_screens.dart';
 import '../../../../features/shared/presentation/layouts/admin_layout.dart';
 
 final adminNavigationKey = GlobalKey<NavigatorState>(debugLabel: 'AdminNavigator');
@@ -25,26 +25,50 @@ class AdminNavigator{
     },
     routes: [
       GoRoute(
-        path: AdminHomeScreen.path,
-        name: AdminHomeScreen.path,
-        builder: (_,__) => AdminHomeScreen(),
+        path: ReleasesScreen.path,
+        name: ReleasesScreen.path,
+        builder: (_,__) => ReleasesScreen(),
         pageBuilder: (context, state) {
           return PageTransitions.buildPageWithFadeInFromCenter(
             state: state,
             context: context,
-            child: const AdminHomeScreen()
+            child: const ReleasesScreen()
           );
         },
       ),
       GoRoute(
-        path: TransportUnitsScreen.path,
-        name: TransportUnitsScreen.path,
-        builder: (_,__) => TransportUnitsScreen(),
+        path: FeaturesPlannedFuncionlitiesScreen.path,
+        name: FeaturesPlannedFuncionlitiesScreen.path,
+        builder: (_,__) => FeaturesPlannedFuncionlitiesScreen(),
         pageBuilder: (context, state) {
           return PageTransitions.buildPageWithFadeInFromCenter(
             state: state,
             context: context,
-            child: const TransportUnitsScreen()
+            child: const FeaturesPlannedFuncionlitiesScreen()
+          );
+        },
+      ),
+      GoRoute(
+        path: FeaturesUnderConsiderationScreen.path,
+        name: FeaturesUnderConsiderationScreen.path,
+        builder: (_,__) => FeaturesUnderConsiderationScreen(),
+        pageBuilder: (context, state) {
+          return PageTransitions.buildPageWithFadeInFromCenter(
+            state: state,
+            context: context,
+            child: const FeaturesUnderConsiderationScreen()
+          );
+        },
+      ),
+      GoRoute(
+        path: FeaturesSendYourIdeasScreen.path,
+        name: FeaturesSendYourIdeasScreen.path,
+        builder: (_,__) => FeaturesSendYourIdeasScreen(),
+        pageBuilder: (context, state) {
+          return PageTransitions.buildPageWithFadeInFromCenter(
+            state: state,
+            context: context,
+            child: const FeaturesSendYourIdeasScreen()
           );
         },
       ),

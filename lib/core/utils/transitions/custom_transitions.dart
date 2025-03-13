@@ -68,8 +68,8 @@ class PageTransitions {
       key: state.pageKey,
       child: child,
       name: state.uri.toString(),
-      reverseTransitionDuration: Duration(milliseconds: duration ?? 200),
-      transitionDuration: Duration(milliseconds: duration ?? 200),
+      reverseTransitionDuration: Duration(milliseconds: duration ?? 100),
+      transitionDuration: Duration(milliseconds: duration ?? 100),
       transitionsBuilder: (BuildContext context, Animation<double> animation,
           Animation<double> secondaryAnimation, Widget child) {
         const beginOffset = Offset(1.0, 0.0); 
