@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/core/config/themes/main_theme.dart';
+import 'package:flutter_template/features/admin/domain/entities/admin_sub_menu_option.dart';
 import 'package:flutter_template/features/admin/presentation/widgets/widgets.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hovering/hovering.dart';
 
 class AdminAsideSubOption extends StatefulWidget {
 
-  final String subTitle;
+  final AdminSubMenuOption adminSubMenuOption;
   final bool last;
+  final bool active;
 
   const AdminAsideSubOption({
     super.key, 
     this.last = false,
-    required this.subTitle, 
+    required this.adminSubMenuOption, 
+    required this.active
   });
 
   @override
@@ -45,9 +48,12 @@ class _AdminAsideSubOptionState extends State<AdminAsideSubOption> {
       },
       child: GestureDetector(
         onTap: () {
-          //Pendiente
+
+          if(widget.active) return;
+
+          context.push(widget.adminSubMenuOption.path);
+          
         },
-        
         behavior: HitTestBehavior.translucent,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -61,7 +67,7 @@ class _AdminAsideSubOptionState extends State<AdminAsideSubOption> {
                 children: [
                   StaticExpandSubMenu(),
                   CircleAside(
-                    hover: hover,
+                    hover: hover || widget.active,
                   ),
                   ExpandSubMenu(
                     isLast: widget.last,
@@ -81,7 +87,7 @@ class _AdminAsideSubOptionState extends State<AdminAsideSubOption> {
                   ),
                 ),
                 Text(
-                  widget.subTitle,
+                  widget.adminSubMenuOption.title,
                   style: GoogleFonts.quicksand(
                     color: AppTheme.colorFont,
                     fontSize: 12

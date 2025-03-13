@@ -12,6 +12,16 @@
       ]
     },
     {
+      "name": "Template Flutter (PRD)",
+      "request": "launch",
+      "type": "dart",
+      "args": [
+        "--dart-define-from-file=env/prd.json",
+        "--flavor",
+        "development"
+      ]
+    },
+    {
       "name": "Template Flutter Web (DEV)",
       "request": "launch",
       "type": "dart",

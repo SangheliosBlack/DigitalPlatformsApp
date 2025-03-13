@@ -1,5 +1,5 @@
 class UiConstants {
-  static String appName = "Flutter" ;
+  static String appName = "Digital Platforms" ;
   static String loginButtonText = "Iniciar sesion";
   static String examplePlaceholder = "tucorreo@ejemplo.com";
   static String passwordPlaceholder = "Tu contraseña";

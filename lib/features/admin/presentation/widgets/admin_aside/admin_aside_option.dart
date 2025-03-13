@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_template/core/config/router/current_route.dart';
 import 'package:flutter_template/features/admin/domain/domain.dart';
 import 'package:flutter_template/features/admin/presentation/widgets/admin_aside/admin_aside.dart';
 import 'package:flutter_template/features/auth/presentation/providers/auth_provider.dart';
 import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hovering/hovering.dart';
 
 class AdminAsideOption extends ConsumerStatefulWidget {
+
+  
   final MenuOptionEntity menuOption;
 
   const AdminAsideOption({super.key, required this.menuOption});
@@ -17,7 +19,7 @@ class AdminAsideOption extends ConsumerStatefulWidget {
 }
 
 class _AdminAsideOptionState extends ConsumerState<AdminAsideOption> with TickerProviderStateMixin {
-  bool _isPLay = false;
+  bool _isPLay = true;
   late AnimationController animationController;
   bool selected = false;
 
@@ -40,6 +42,9 @@ class _AdminAsideOptionState extends ConsumerState<AdminAsideOption> with Ticker
 
   @override
   Widget build(BuildContext context) {
+
+    final route = ref.watch(currentRouteProvider);
+
     return MouseRegion(
       cursor: SystemMouseCursors.click,
       onEnter: (e) {
@@ -59,9 +64,11 @@ class _AdminAsideOptionState extends ConsumerState<AdminAsideOption> with Ticker
                 ? () {
                     ref.read(authProvider.notifier).logout();
                   }
-                : widget.menuOption.subMenu.isEmpty
+                : widget.menuOption.subMenuOptions.isEmpty
                     ? () {
-                        //Pendiente
+                        
+//                      context.push(widget.menuOption);
+
                       }
                     : () {
                         if (!_isPLay) {
@@ -107,7 +114,7 @@ class _AdminAsideOptionState extends ConsumerState<AdminAsideOption> with Ticker
                         offstage: true,
                       ),
                       Visibility(
-                        visible: widget.menuOption.subMenu.isNotEmpty,
+                        visible: widget.menuOption.subMenuOptions.isNotEmpty,
                         child: AnimatedContainer(
                           duration: Duration(milliseconds: 200),
                           padding: EdgeInsets.all(5),
@@ -137,11 +144,12 @@ class _AdminAsideOptionState extends ConsumerState<AdminAsideOption> with Ticker
                     padding: EdgeInsets.symmetric(vertical: 0, horizontal: 0),
                     shrinkWrap: true,
                     itemBuilder: (_, i) => AdminAsideSubOption(
-                      last: i == widget.menuOption.subMenu.length - 1,
-                      subTitle: widget.menuOption.subMenu[i],
+                      last: i == widget.menuOption.subMenuOptions.length - 1,
+                      adminSubMenuOption: widget.menuOption.subMenuOptions[i], 
+                      active: route == widget.menuOption.subMenuOptions[i].path,
                     ),
                     separatorBuilder: (_, __) => Gap(0),
-                    itemCount: widget.menuOption.subMenu.length,
+                    itemCount: widget.menuOption.subMenuOptions.length,
                   )
                 : Offstage(),
           ),

@@ -5,6 +5,7 @@ import 'package:flutter_template/features/auth/presentation/providers/auth_provi
 import 'package:flutter_template/features/auth/presentation/widgets/widgets.dart';
 import 'package:flutter_template/features/features_screens.dart';
 import 'package:flutter_template/helpers/extensions.dart';
+import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
@@ -50,6 +51,7 @@ class LoginScreen extends ConsumerWidget {
                           fontSize: sizingInformation.isDesktop ? 60 : 50
                         ),
                       ),
+                      Gap(20),
                       LoginForm(
                         formKey: _formKey
                       ),

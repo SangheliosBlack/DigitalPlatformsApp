@@ -1,24 +1,37 @@
 import 'package:bootstrap_icons/bootstrap_icons.dart';
+import 'package:flutter_template/features/admin/domain/entities/admin_sub_menu_option.dart';
 import 'package:flutter_template/features/point_of_sale/domain/domain.dart';
 import 'package:flutter_template/features/point_of_sale/presentation/domain/domain.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../features/admin/domain/domain.dart';
+import '../../features/features_screens.dart';
 
 class ContantsData{
 
   static List<MenuOptionEntity> adminListMenuOptions = [
     MenuOptionEntity(
-      titulo: "Atajos", 
+      titulo: "Funcionalidades", 
       icono: BootstrapIcons.archive, 
-      subMenu: [
-        "Liberaciones recientes",
-        "Funcionalidades planeadas",
-        "Bajo consideración",
+      subMenuOptions: [
+        AdminSubMenuOption(
+          title: "Liberaciones recientes",
+          path: ReleasesScreen.path
+        ),
+         AdminSubMenuOption(
+          title: "Funcionalidades planeadas",
+          path:   FeaturesPlannedFuncionlitiesScreen.path
+        ),
+        AdminSubMenuOption(
+          title: "Bajo consideración",
+          path:   FeaturesUnderConsiderationScreen.path
+        ),
+        AdminSubMenuOption(
+          title: "Envia tus ideas",
+          path:   FeaturesSendYourIdeasScreen.path
+        ),
       ]
     ),
-    MenuOptionEntity(titulo: "Home", icono: BootstrapIcons.house, subMenu: []),
-    
   ];
 
   static List deliveryTypes = [

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_template/core/config/themes/main_theme.dart';
 
 class LogoWiget extends StatelessWidget {
 
@@ -12,13 +13,12 @@ class LogoWiget extends StatelessWidget {
       margin: EdgeInsets.only(left: 10),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(10),
-        child: SizedBox(
+        child: Container(
           width:50,
-          child: Image(
-            image: AssetImage(
-              "assets/images/tuali.jpg",
-            ),
-            fit: BoxFit.fitWidth,
+          height: 50,
+          decoration: BoxDecoration(
+            color: AppTheme.primary,
+            borderRadius: BorderRadius.circular(10)
           ),
         ),
       ),
@@ -27,3 +27,11 @@ class LogoWiget extends StatelessWidget {
   }
 
 }
+/*
+Image(
+            image: AssetImage(
+              "assets/images/tuali.jpg",
+            ),
+            fit: BoxFit.fitWidth,
+          ),
+          */

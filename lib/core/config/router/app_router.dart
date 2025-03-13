@@ -74,7 +74,7 @@ GoRouter appRouter(Ref ref) {
       AuthNavigator.routes(ref),
       AdminNavigator.routes(ref)
     ],
-    redirect: (context,state){
+    redirect: (context,state) {
 
       final authStatus = appRouterNotifier.authenticationStatus;
 
@@ -100,7 +100,9 @@ GoRouter appRouter(Ref ref) {
 
           //return PoHomeScreen.path;
 
-          return AdminHomeScreen.path;
+         
+
+          return ReleasesScreen.path;
 
         }
 

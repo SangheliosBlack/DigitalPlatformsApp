@@ -1,5 +1,8 @@
 ## Changelog
 
+### [00008] - [13/MARZO/2025] - Julio Villagrana
+- Complete features and features surveys
+
 ### [00007] -  [19/ENE/2025] - Julio Vilagrana 
 - Add sales and datatable service
 

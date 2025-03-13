@@ -1,22 +1,28 @@
-// ignore_for_file: constant_identifier_names
+import 'package:flutter_template/features/auth/domain/entities/role_entity.dart';
+import 'package:hive/hive.dart';
 
-enum Role {
+part 'user_entity.g.dart';
 
-  ADMIN('Administrator'),
-  USER('User');
-
-  final String description;
-
-  const Role(this.description);
-  
-}
-
+@HiveType(typeId: 0)
 class UserEntity {
+
+  @HiveField(0)
   final String id;
+
+  @HiveField(1)
   final String email;
+
+  @HiveField(2)
   final String name;
+
+  @HiveField(3)
   final Role role;
+
+  @HiveField(4)
   final DateTime lastUpdate;
+
+  @HiveField(5, defaultValue: "USER")
+  final String roleName;
 
   UserEntity({
     required this.id,
@@ -24,6 +30,7 @@ class UserEntity {
     required this.name,
     required this.role,
     required this.lastUpdate,
+    required this.roleName,
   });
 
   UserEntity copyWith({
@@ -33,6 +40,7 @@ class UserEntity {
     String? lastName,
     Role? role,
     DateTime? lastUpdate,
+    String? roleName
   }) {
     return UserEntity(
       id: id ?? this.id,
@@ -40,6 +48,7 @@ class UserEntity {
       name: name ?? this.name,
       role: role ?? this.role,
       lastUpdate: lastUpdate ?? this.lastUpdate,
+      roleName: roleName ?? this.roleName
     );
   }
 }
