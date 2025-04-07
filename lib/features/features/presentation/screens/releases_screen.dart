@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/features/admin/presentation/widgets/x/card_list_test.dart';
+import 'package:flutter_template/features/release/presentation/widgets/content/card_list_content.dart';
 
 class ReleasesScreen extends StatelessWidget {
 

@@ -4,7 +4,6 @@ import 'package:flutter_template/core/config/themes/main_theme.dart';
 import 'package:flutter_template/core/constants/constants.dart';
 import 'package:flutter_template/features/admin/domain/domain.dart';
 import 'package:gap/gap.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import 'admin_aside.dart';
 
@@ -33,35 +32,13 @@ class _AdminAsideMenuState extends State<AdminAsideMenu> {
             borderRadius: BorderRadius.circular(20)
           ),
           padding: const EdgeInsets.symmetric(
-            vertical: 20, 
+            vertical: 10, 
             horizontal: 5
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                spacing: 10,
-                children: [
-                  LogoWiget(),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                    
-                      Text("Digital Platforms", 
-                      style: GoogleFonts.quicksand(
-                        color: Colors.black,
-                        fontSize: 12,
-                      )),
-                      Text("Name1 | Name2", 
-                      style: GoogleFonts.quicksand(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 12,
-                      )),
-                    ],
-                  ),
-                ],
-              ),
+              AdminAsideSelectCommercialPlatformButton(),
               Gap(15),
               Expanded(
                 child: AnimatedContainer(

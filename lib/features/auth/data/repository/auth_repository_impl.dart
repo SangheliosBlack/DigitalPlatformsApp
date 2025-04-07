@@ -1,8 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_template/core/resources/data_state.dart';
 import 'package:flutter_template/features/auth/data/datasources/data_sources.dart';
+import 'package:flutter_template/features/auth/data/mappers/conmmercial_figure_mapper.dart';
 import 'package:flutter_template/features/auth/data/mappers/login_user_response_mapper.dart';
 import 'package:flutter_template/features/auth/domain/domain.dart';
+import 'package:flutter_template/features/auth/domain/entities/commercial_figure_entity.dart';
 import 'package:flutter_template/features/auth/domain/entities/user_entity.dart';
 import 'package:flutter_template/features/auth/domain/params/login_params.dart';
 
@@ -55,6 +57,23 @@ class AuthRepositoryImpl implements AuthRepository {
 
     }
     
+  }
+
+  @override
+  Future<DataState<List<CommercialFigureEntity>>> getAllCommercialFigues() async {
+
+    final remoteResponse = await remoteDataSource.getAllCommercialFigues();
+
+    if(remoteResponse is DataSuccess){
+
+      final responseToEntity = CommercialFigureMapper.fromDtoList(remoteResponse.data!.commercialFigures);
+
+      return DataSuccess(responseToEntity);
+
+    }
+    
+    return DataFailed(remoteResponse.error!);
+
   }
 
 }

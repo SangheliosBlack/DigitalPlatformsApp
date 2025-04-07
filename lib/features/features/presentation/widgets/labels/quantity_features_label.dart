@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_template/features/auth/presentation/providers/auth_provider.dart';
 import 'package:flutter_template/features/features/application/providers/features_provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -15,7 +16,9 @@ class QuantityFeaturesLabel extends ConsumerWidget {
   @override
   Widget build(BuildContext context,ref) {
 
-    final featuresQuantity = ref.watch(featuresProvider).getFeaturesByStatus(status: status);
+    final currentCommercialFigure = ref.watch(authProvider).commercialFigureIdSelected;
+
+    final featuresQuantity = ref.watch(featuresProvider).getFeaturesByStatus(status: status, commercialFigure: currentCommercialFigure);
 
     return RichText(
       text: TextSpan(

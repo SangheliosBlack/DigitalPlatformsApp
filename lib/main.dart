@@ -11,16 +11,18 @@ import 'package:flutter_template/core/config/themes/main_theme.dart';
 import 'package:flutter_template/core/services/background_fetch/background_fetch_service.dart';
 import 'package:flutter_template/core/services/cache_service/cache_service_impl.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
+import 'package:go_router/go_router.dart';
 import 'core/config/router/app_router.dart';
 
 void main() async {
   
+  GoRouter.optionURLReflectsImperativeAPIs = true;
 
   await CacheServiceImpl().initService();
 
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp, DeviceOrientation.portraitDown, DeviceOrientation.landscapeLeft, DeviceOrientation.landscapeRight]);
 
-  usePathUrlStrategy();
+  setUrlStrategy(PathUrlStrategy());
 
   runApp(ProviderScope(child: MainApp()));
 
@@ -43,7 +45,7 @@ class MainApp extends ConsumerWidget {
 
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Template',
+      title: 'Digital Platforms',
       theme: AppTheme.appTheme,
       localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,

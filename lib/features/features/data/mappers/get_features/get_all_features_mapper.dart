@@ -19,7 +19,8 @@ class GetAllFeaturesMapper {
       surverMax: dto.surveyMax,
       description: dto.description, 
       featureAnswers: FeatureAnswersMapper.toEntityList(dtoList: dto.featureAnswersDto), 
-      answerSurvey: FeatureAsnwerSurveyMapper.fromDto(dto: dto.answerSurveyDto)
+      answerSurvey: FeatureAsnwerSurveyMapper.fromDto(dto: dto.answerSurveyDto),
+      commercialFigure: dto.commercialFigure
     );
     
   }

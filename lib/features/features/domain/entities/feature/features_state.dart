@@ -14,12 +14,12 @@ class FeaturesState {
     this.showErrors = false
   });
 
-  Map<String, FeatureEntity> getFeaturesByStatus({required int status}) {
+  Map<String, FeatureEntity> getFeaturesByStatus({required int status,required String commercialFigure}) {
 
     if (features.isEmpty) return {};
 
     return Map.fromEntries(
-      features.entries.where((entry) => entry.value.status == status),
+      features.entries.where((entry) => entry.value.status == status && entry.value.commercialFigure == commercialFigure),
     );
 
   }

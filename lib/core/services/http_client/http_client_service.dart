@@ -1,3 +1,5 @@
+import 'dart:io';
+
 abstract class HttpClientService {
 
   Future<dynamic> get({required String path});
@@ -9,5 +11,7 @@ abstract class HttpClientService {
   Future<dynamic> post({required String path, Map<String, dynamic>? data});
 
   Future<dynamic> patch({required String path, Map<String, dynamic>? data});
+
+  Future<dynamic> postMultiPartRaw({required String path, Map<String,dynamic>? data, File? file});
   
 }

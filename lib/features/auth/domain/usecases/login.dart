@@ -18,4 +18,5 @@ class LoginUseCase implements Usecase<DataState<UserEntity>, LoginParams> {
     );
     
   }
+  
 }

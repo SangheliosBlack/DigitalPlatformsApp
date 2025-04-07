@@ -19,15 +19,14 @@ class FeatureAnswersMapper {
   static List<FeatureAnswerEntity> toEntityList({required List<FeatureAnswersDto> dtoList}) {
 
     return dtoList.map((dto) {
-
       return FeatureAnswerEntity(
-        id: dto.id, 
-        title: dto.title, 
-        active: dto.active, 
-        value: dto.value
+      id: dto.id, 
+      title: dto.title, 
+      active: dto.active, 
+      value: dto.value
       );
-
-    }).toList();
+    }).toList()
+    ..sort((a, b) => a.value.compareTo(b.value));
 
   }
   

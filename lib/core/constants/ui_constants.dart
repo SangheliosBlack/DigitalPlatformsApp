@@ -17,4 +17,6 @@ class UiConstants {
   static String currentTaskLabel = "Mi tablero";
   static String deliveryWidgetTitle = "Fletes";
   static String filterButtonLabel = "Filtrar";
+  static String createNewReleaseTitle = "Crear nueva liberacion";
+  static String createNewReleaseMediaTitle = "Multimedia";
 }
