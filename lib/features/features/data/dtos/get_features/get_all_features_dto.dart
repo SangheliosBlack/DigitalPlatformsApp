@@ -16,6 +16,7 @@ class FeatureDto {
   final int surveyMax;
   final List<FeatureAnswersDto> featureAnswersDto;
   final FeatureAnswerSurveyDto answerSurveyDto;
+  final String commercialFigure;
 
   FeatureDto({
     required this.id,
@@ -30,7 +31,8 @@ class FeatureDto {
     required this.surveyMax,
     required this.description,
     required this.featureAnswersDto,
-    required this.answerSurveyDto
+    required this.answerSurveyDto,
+    required this.commercialFigure
   });
 
   factory FeatureDto.fromJson(Map<String, dynamic> json) {
@@ -52,7 +54,8 @@ class FeatureDto {
       featureAnswersDto: FeatureAnswersMapper.fromJsonList(json["answers"] ?? []), 
       answerSurveyDto: json["answer_survey"] != null 
           ? FeatureAnswerSurveyDto.fromJson(json["answer_survey"]) 
-          : FeatureAnswerSurveyDto.defautlValue(),
+          : FeatureAnswerSurveyDto.defautlValue(), 
+      commercialFigure: json["commercial_figure"],
     );
   }
 

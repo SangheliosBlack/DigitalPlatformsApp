@@ -4,6 +4,7 @@ import 'package:flutter_template/core/services/auth_service/authentication_servi
 import 'package:flutter_template/core/services/auth_service/authentication_service_state.dart';
 import 'package:flutter_template/core/services/cache_service/cache_service_impl.dart';
 import 'package:flutter_template/core/services/navigation_service/navigation_service.dart';
+import 'package:flutter_template/features/auth/application/use_cases/get_commercial_figures/get_commercial_figures_use_case_provider.dart';
 import 'package:flutter_template/features/features/presentation/screens/releases_screen.dart';
 import 'package:flutter_template/features/auth/presentation/providers/auth_state.dart';
 import 'package:flutter_template/features/auth/domain/params/login_params.dart';
@@ -53,6 +54,8 @@ class Auth extends _$Auth{
 
     if(useCase is DataSuccess){
 
+      await getAllCommercialFigues();
+
       state = state.copyWith(
         user: useCase.data,
         isLoading: false,
@@ -73,11 +76,28 @@ class Auth extends _$Auth{
 
   }
 
+  Future<void> getAllCommercialFigues() async {
+
+    final useCase = await ref.read(getCommercialFiguresUseCaseProvider).execute();
+
+    if(useCase is DataSuccess){
+
+      state = state.copyWith(
+        commercialFigures: useCase.data
+      );
+
+    }
+
+
+  }
+
   Future<void> loadUser () async {
 
     try {
       
       final useCase = await ref.read(loadUserCaseProvider).execute(params: Object());
+
+      await getAllCommercialFigues();
 
       state = state.copyWith(
         user: useCase.data
@@ -136,6 +156,14 @@ class Auth extends _$Auth{
     CacheServiceImpl().clearAllCache();
 
     _authenticationNavigate();
+
+  }
+
+  updateCommercialFigure({required String name}){
+
+    state = state.copyWith(
+      commercialFigures: state.commercialFigures.map((cf) => cf.name == name ? cf.copyWith(active: true) : cf.copyWith(active: false)).toList(),
+    );
 
   }
 

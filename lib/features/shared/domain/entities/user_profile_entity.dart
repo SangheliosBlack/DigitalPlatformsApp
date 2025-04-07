@@ -16,7 +16,7 @@ class UserProfileEntity {
       imageUrl: json["image_url"],
   );
 
-  Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toMap() => {
       "_id": id,
       "full_name": fullName,
       "image_url": imageUrl,

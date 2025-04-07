@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_template/features/auth/presentation/providers/auth_provider.dart';
 import 'package:flutter_template/features/features/application/providers/features_provider.dart';
 import 'package:flutter_template/features/features/presentation/widgets/widgets.dart';
 
@@ -15,7 +16,9 @@ class PlannedFunctionalitiesList extends ConsumerWidget {
   @override
   Widget build(BuildContext context,ref) {
 
-    final plannedFunctionalities = ref.watch(featuresProvider).getFeaturesByStatus(status: status);
+    final currentCommercialFigure = ref.watch(authProvider).commercialFigureIdSelected;
+
+    final plannedFunctionalities = ref.watch(featuresProvider).getFeaturesByStatus(status: status, commercialFigure: currentCommercialFigure);
 
     return Expanded(
       child: RefreshIndicator(

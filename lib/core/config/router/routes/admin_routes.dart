@@ -17,7 +17,7 @@ class AdminNavigator{
     ],
     navigatorKey: adminNavigationKey,
      pageBuilder: (context, state, child) {
-      return PageTransitions.buildPageWithFadeInFromCenter(
+      return PageTransitions.buildPageWithFadeAndSlideTransition(
         state: state,
         context: context,
         child: AdminLayout(child: child)
@@ -29,7 +29,7 @@ class AdminNavigator{
         name: ReleasesScreen.path,
         builder: (_,__) => ReleasesScreen(),
         pageBuilder: (context, state) {
-          return PageTransitions.buildPageWithFadeInFromCenter(
+          return PageTransitions.buildPageWithFadeAndSlideTransition(
             state: state,
             context: context,
             child: const ReleasesScreen()
@@ -41,7 +41,7 @@ class AdminNavigator{
         name: FeaturesPlannedFuncionlitiesScreen.path,
         builder: (_,__) => FeaturesPlannedFuncionlitiesScreen(),
         pageBuilder: (context, state) {
-          return PageTransitions.buildPageWithFadeInFromCenter(
+          return PageTransitions.buildPageWithFadeAndSlideTransition(
             state: state,
             context: context,
             child: const FeaturesPlannedFuncionlitiesScreen()
@@ -53,7 +53,7 @@ class AdminNavigator{
         name: FeaturesUnderConsiderationScreen.path,
         builder: (_,__) => FeaturesUnderConsiderationScreen(),
         pageBuilder: (context, state) {
-          return PageTransitions.buildPageWithFadeInFromCenter(
+          return PageTransitions.buildPageWithFadeAndSlideTransition(
             state: state,
             context: context,
             child: const FeaturesUnderConsiderationScreen()
@@ -65,7 +65,7 @@ class AdminNavigator{
         name: FeaturesSendYourIdeasScreen.path,
         builder: (_,__) => FeaturesSendYourIdeasScreen(),
         pageBuilder: (context, state) {
-          return PageTransitions.buildPageWithFadeInFromCenter(
+          return PageTransitions.buildPageWithFadeAndSlideTransition(
             state: state,
             context: context,
             child: const FeaturesSendYourIdeasScreen()

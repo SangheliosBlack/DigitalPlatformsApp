@@ -15,8 +15,6 @@ class FeaturesUseCases {
 
   UpdateFeatureUseCase get  updateFeatureSurvey => ref.read(updateFeatureSurveyUseCaseProvider);
 
-
-
 }
 
 final useCasesFeatures = Provider((ref) => FeaturesUseCases(ref: ref));

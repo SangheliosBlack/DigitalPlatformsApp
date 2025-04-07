@@ -25,24 +25,27 @@ class TopAsideWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           UserDataCard(),
-          Row(
-            spacing:10,
-            children: [
-              SearchWidget(),
-              SnButton(
-                labelActive: true,
-                icon: BootstrapIcons.bell,
-                onTap: () {
-                  
-                },
-              ),
-              SnButton(
-                icon: BootstrapIcons.chat_dots,
-                onTap: () {
-                  
-                },
-              )
-            ],
+          Visibility(
+            visible: false,
+            child: Row(
+              spacing:10,
+              children: [
+                SearchWidget(),
+                SnButton(
+                  labelActive: true,
+                  icon: BootstrapIcons.bell,
+                  onTap: () {
+                    
+                  },
+                ),
+                SnButton(
+                  icon: BootstrapIcons.chat_dots,
+                  onTap: () {
+                    
+                  },
+                )
+              ],
+            ),
           )
         ],
       ),

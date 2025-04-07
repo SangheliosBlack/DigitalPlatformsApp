@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/core/config/themes/main_theme.dart';
 import 'package:flutter_template/features/admin/domain/entities/admin_sub_menu_option.dart';
-import 'package:flutter_template/features/admin/presentation/widgets/widgets.dart';
+import 'package:flutter_template/features/admin/presentation/widgets/admin_aside/sub_menu/circle_aside.dart';
+import 'package:flutter_template/features/admin/presentation/widgets/admin_aside/sub_menu/expand_sub_menu.dart';
+import 'package:flutter_template/features/admin/presentation/widgets/admin_aside/sub_menu/static_expand_sub_menu.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 

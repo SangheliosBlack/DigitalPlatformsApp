@@ -18,6 +18,7 @@ class FeatureEntity {
   int surverMax;
   List<FeatureAnswerEntity> featureAnswers;
   AnswerSurveryEntity answerSurvey;
+  String commercialFigure;
 
   FeatureEntity({
     required this.id,
@@ -32,7 +33,8 @@ class FeatureEntity {
     required this.surverMax,
     required this.description,
     required this.featureAnswers,
-    required this.answerSurvey
+    required this.answerSurvey,
+    required this.commercialFigure
   });
   
 }
