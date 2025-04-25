@@ -141,33 +141,56 @@ class ReleaseCard extends StatelessWidget {
               Center(
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(10),
-                  child: Image.network(
-                    release.imageUrl,
-                    key: ValueKey<String>("DnImageShimmer $release.imageUrl"),
-                    loadingBuilder: (ctx, child, loadingProgress) {
-                      return AnimatedSwitcher(
+                    child: Stack(
+                    children: [
+                      Image.network(
+                      release.imageUrl,
+                      key: ValueKey<String>("DnImageShimmer ${release.imageUrl}"),
+                      loadingBuilder: (ctx, child, loadingProgress) {
+                        return AnimatedSwitcher(
                         duration: const Duration(milliseconds: 300),
                         reverseDuration: const Duration(milliseconds: 300),
                         child: loadingProgress == null 
                           ? child
                           : Container(
-                           
-                              key: ValueKey<String>("DnImageShimmer Shimmer $release.imageUrl"),
-                              child: Center(
-                                child: CircularProgressIndicator(
-                                  strokeWidth: 3,
-                                  color:  AppTheme.primary,
-                                    value: loadingProgress.expectedTotalBytes != null
-                                         ? loadingProgress.cumulativeBytesLoaded / (loadingProgress.expectedTotalBytes ?? 1)
-                                         : null),
-                                ),
-                              ),
-                      );
-                    },
-                    errorBuilder: (BuildContext context, Object error, StackTrace? stackTrace) => Image.asset("assets/images/category_no_image.png"),
+                            key: ValueKey<String>("DnImageShimmer Shimmer ${release.imageUrl}"),
+                            child: Center(
+                            child: CircularProgressIndicator(
+                              strokeWidth: 3,
+                              color: AppTheme.primary,
+                              value: loadingProgress.expectedTotalBytes != null
+                                 ? loadingProgress.cumulativeBytesLoaded / (loadingProgress.expectedTotalBytes ?? 1)
+                                 : null),
+                            ),
+                            ),
+                        );
+                      },
+                      errorBuilder: (BuildContext context, Object error, StackTrace? stackTrace) => Stack(
+                        children: [
+                        Image.asset("assets/images/no-image.jpg"),
+                        Positioned.fill(
+                          child: Container(
+                          color: Colors.black.withOpacity(0.6),
+                          child: Center(
+                            child: Text(
+                            stackTrace?.toString() ?? "Error loading image",
+                            style: GoogleFonts.quicksand(
+                              color: Colors.white,
+                              fontSize: 12,
+                              fontWeight: FontWeight.w400,
+                            ),
+                            textAlign: TextAlign.center,
+                            ),
+                          ),
+                          ),
+                        ),
+                        ],
+                      ),
+                      ),
+                    ],
+                    ),
                   ),
                 ),
-              )
             ],
           ),
         ),
