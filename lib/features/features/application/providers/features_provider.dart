@@ -1,4 +1,5 @@
 
+import 'package:flutter_template/features/auth/presentation/providers/auth_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:flutter_template/core/core.dart';
 
@@ -87,11 +88,14 @@ class Features extends _$Features{
 
     final formFeatureState = ref.read(formProvider);
 
+    final commercialFigureSelected = ref.read(authProvider).commercialFigureIdSelected;
+
     final CreateFeatureRequestDto request = CreateFeatureRequestDto(
       title: formFeatureState.title ,
       description: formFeatureState.description,
       status: status,
-      listImprovements: formFeatureState.improvements
+      listImprovements: formFeatureState.improvements,
+      commercialFigure:commercialFigureSelected
     );
 
     final response = await useCases.createFeature.execute(request: request);

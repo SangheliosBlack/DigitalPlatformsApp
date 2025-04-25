@@ -1,5 +1,8 @@
 ## Changelog
 
+### [00009] - [25/ABR/2025] - Julio Villagrana
+- Bug fix commercial figure added on post new feature request dto
+
 ### [00008] - [13/MARZO/2025] - Julio Villagrana
 - Complete features and features surveys
 
