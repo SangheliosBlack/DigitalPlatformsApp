@@ -1,15 +1,17 @@
+import 'package:flutter_template/features/release/domain/entities/release_version_code_entity.dart';
 import 'package:flutter_template/features/shared/shared.dart';
 
 class ReleaseEntity {
   String title;
   String description;
-  String imageUrl;
+  String? imageUrl;
   UserProfileEntity user;
   DateTime createdAt;
   DateTime updatedAt;
   String id;
   int quarter;
   String commercialFigure;
+  ReleaseVersionCodeEntity codeVersion;
 
   ReleaseEntity({
     required this.title,
@@ -21,6 +23,7 @@ class ReleaseEntity {
     required this.id,
     required this.quarter,
     required this.commercialFigure,
+    required this.codeVersion
   });
 
   Map<String, dynamic> toMap() {
@@ -34,6 +37,7 @@ class ReleaseEntity {
       'id': id,
       'quarter': quarter,
       'commercialFigure': commercialFigure,
+      'codeVersion': codeVersion
     };
   }
 }

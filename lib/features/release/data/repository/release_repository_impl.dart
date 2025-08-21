@@ -14,9 +14,9 @@ class ReleaseRepositoryImpl implements ReleaseRepository  {
   });
 
   @override
-  Future<DataState<Map<String, ReleaseEntity>>> fetchAllReleases() async {
+  Future<DataState<Map<String, ReleaseEntity>>> fetchAllReleases({required String versionCode}) async {
 
-    final remoteResponse = await remoteDataSource.fetchAllReleases();
+    final remoteResponse = await remoteDataSource.fetchAllReleases(versionCode: versionCode);
 
     if(remoteResponse is DataSuccess){
 

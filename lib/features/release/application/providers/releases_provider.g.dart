@@ -6,7 +6,7 @@ part of 'releases_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$releasesHash() => r'001b1049310c6c3b9a79ae28552cf750439f7633';
+String _$releasesHash() => r'037f57e5f39747b181ca6bcffa83338367564a80';
 
 /// See also [Releases].
 @ProviderFor(Releases)

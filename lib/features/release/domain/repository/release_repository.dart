@@ -5,7 +5,7 @@ import 'package:flutter_template/features/release/domain/entities/release_entity
 
 abstract interface class ReleaseRepository {
 
-  Future<DataState<Map<String, ReleaseEntity>>>  fetchAllReleases();
+  Future<DataState<Map<String, ReleaseEntity>>>  fetchAllReleases({required String versionCode});
 
   Future<DataState<ReleaseEntity>> createNewRelease({required CreateReleaseRequestDto requestDto });
 

@@ -1,5 +1,6 @@
 import 'package:flutter_template/features/release/data/dtos/get_all_releases/release_response_dto.dart';
 import 'package:flutter_template/features/release/domain/entities/release_entity.dart';
+import 'package:flutter_template/features/shared/data/mappers/features/release_version_code_mapper.dart';
 import 'package:flutter_template/features/shared/data/mappers/features/user_feature_mapper.dart';
 
 class ReleaseMapper {
@@ -15,7 +16,8 @@ class ReleaseMapper {
       updatedAt: dto.updatedAt, 
       id: dto.id,
       quarter: dto.quarter,
-      commercialFigure: dto.commercialFigure
+      commercialFigure: dto.commercialFigure, 
+      codeVersion: ReleaseVersionCodeMapper.fromDto(dto: dto.versionCode)
     );
 
   }

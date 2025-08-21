@@ -57,16 +57,9 @@ class FeatureRemoteDatasourceImpl implements FeaturesRemoteDataSource {
     
     try {
 
-      final data = {
-        "title": request.title,
-        "description": request.description,
-        "list_improvements" : request.listImprovements,
-        "status": request.status
-      };
-      
-      final response = await httpClientService.post(path: '/features',data: data);
+      final response = await httpClientService.post(path: '/features',data: request.toJson());
 
-     if(response.statusCode == 200){
+      if(response.statusCode == 200){
 
         final apiResponse = ApiResponse<Map<String, dynamic>>.fromJson(response.data);
 

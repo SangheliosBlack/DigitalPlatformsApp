@@ -52,6 +52,12 @@ class ReleaseFormStateNotifier extends StateNotifier<ReleaseFormState> {
     state = ReleaseFormState();
   }
 
+  void updateVersionCode({required String value}) {
+    state = state.copyWith(
+      versionCode: value
+    );
+  }
+
 }
 
 final releaseFormProvider = StateNotifierProvider<ReleaseFormStateNotifier, ReleaseFormState>(
