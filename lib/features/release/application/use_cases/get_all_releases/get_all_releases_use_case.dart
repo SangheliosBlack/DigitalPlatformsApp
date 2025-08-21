@@ -8,9 +8,9 @@ class GetAllReleasesUseCase {
 
   GetAllReleasesUseCase({required this.repository});
 
-   Future<DataState<Map<String, ReleaseEntity>>> execute(){
+   Future<DataState<Map<String, ReleaseEntity>>> call({required String versionCode}){
 
-    return repository.fetchAllReleases();
+    return repository.fetchAllReleases(versionCode:versionCode);
 
   }
 

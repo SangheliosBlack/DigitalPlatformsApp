@@ -9,7 +9,7 @@ class CreateNewReleaseUseCase {
 
   CreateNewReleaseUseCase({required this.repository});
 
-  Future<DataState<ReleaseEntity>> execute({required CreateReleaseRequestDto requestDto}){
+  Future<DataState<ReleaseEntity>> call({required CreateReleaseRequestDto requestDto}){
 
     return repository.createNewRelease(requestDto: requestDto);
 

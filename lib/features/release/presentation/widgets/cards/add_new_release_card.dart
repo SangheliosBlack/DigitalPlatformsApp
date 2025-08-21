@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_template/features/release/application/providers/releases_provider.dart';
 
 import 'package:flutter_template/features/release/presentation/widgets/cards/new_release/new_release_card.dart';
+import 'package:flutter_template/features/release/presentation/widgets/cards/new_release/new_release_select_version_code.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AddNewReleaseCard extends ConsumerWidget {
@@ -37,6 +38,7 @@ class AddNewReleaseCard extends ConsumerWidget {
                   NewReleaseCardTitle(),
                   CreateReleaseInputTitle(),
                   NewReleaseDescriptionInput(),
+                  NewReleaseSelectVersionCode(),
                   NewReleaseTitleMediaInput(),
                   NewReleaseAddImage(),
                   Spacer(),

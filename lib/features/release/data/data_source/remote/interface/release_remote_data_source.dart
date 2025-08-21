@@ -4,7 +4,7 @@ import 'package:flutter_template/core/resources/data_state.dart';
 
 abstract interface class ReleaseRemoteDataSource {
 
-  Future<DataState<GetAllReleasesListDto>> fetchAllReleases();
+  Future<DataState<GetAllReleasesListDto>> fetchAllReleases({required String versionCode});
   Future<DataState<CreateNewReleaseResonseDto>> createNewRelease({required CreateReleaseRequestDto requestDto});
 
 }

@@ -2,6 +2,7 @@ import 'package:bootstrap_icons/bootstrap_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_template/core/config/themes/main_theme.dart';
 import 'package:flutter_template/features/admin/presentation/widgets/top_aside/top_aside_export.dart';
+import 'package:flutter_template/features/admin/presentation/widgets/top_aside/version_code_filter.dart';
 import 'package:flutter_template/features/admin/presentation/widgets/users_widget/user_widget/circle_image_user.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -68,7 +69,8 @@ class UserDataCard extends StatelessWidget {
               )
             ],
           ),
-        )
+        ),
+        VersionCodeSelectorButton()
 
       ],
     );

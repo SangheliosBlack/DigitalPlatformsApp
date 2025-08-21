@@ -13,6 +13,7 @@ class CreateReleaseRequestDto {
   final String commercialFigure;
   final Uint8List? fileBytes;
   final String? fileName;
+  final String versionCode;
 
   const CreateReleaseRequestDto({
     required this.title,
@@ -22,6 +23,7 @@ class CreateReleaseRequestDto {
     this.fileBytes,
     required this.commercialFigure,
     this.fileName,
+    required this.versionCode
   });
 
   Map<String, dynamic> toJson() {
@@ -29,7 +31,8 @@ class CreateReleaseRequestDto {
       'title': title,
       'description': description,
       'quarter': quarter,
-      'commercial_figure' : commercialFigure
+      'commercial_figure' : commercialFigure,
+      'version_code': versionCode
     };
   }
 

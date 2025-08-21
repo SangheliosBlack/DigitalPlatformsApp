@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_template/features/auth/presentation/providers/auth_provider.dart';
 import 'package:flutter_template/features/release/application/providers/releases_provider.dart';
 import 'package:flutter_template/features/release/presentation/widgets/cards/cards.dart';
+import 'package:flutter_template/features/version_codes/presentation/providers/version_codes_provider.dart';
 import 'package:gap/gap.dart';
 
 class CardListTestWidget extends ConsumerStatefulWidget {
@@ -23,6 +24,8 @@ class CardListTestWidgetState extends ConsumerState<CardListTestWidget> {
     super.initState();
 
     Future.microtask(() => ref.read(releasesProvider.notifier).fetchAllReleases());
+
+    Future.microtask(() => ref.read(versionCodesProvider.notifier).getAllVersionCodes());
 
   }
 

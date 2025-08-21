@@ -12,11 +12,11 @@ class FeatureRemoteDataSourceImpl implements ReleaseRemoteDataSource {
   FeatureRemoteDataSourceImpl({required this.httpClientService});
 
   @override
-  Future<DataState<GetAllReleasesListDto>> fetchAllReleases() async {
+  Future<DataState<GetAllReleasesListDto>> fetchAllReleases({required String versionCode}) async {
 
     try {
       
-      final response = await httpClientService.get(path: '/releases');
+      final response = await httpClientService.get(path: '/releases?version=$versionCode');
 
         if(response.statusCode == 200){
 

@@ -1,16 +1,18 @@
+import 'package:flutter_template/features/release/data/dtos/get_all_releases/release_code_version_dto.dart';
 import 'package:flutter_template/features/shared/data/dtos/features/user_feature_dto.dart';
 
 class ReleaseResponseDto {
 
     String title;
     String description;
-    String imageUrl;
+    String? imageUrl;
     UserFeatureDto user;
     DateTime createdAt;
     DateTime updatedAt;
     String id;
     int quarter;
     String commercialFigure;
+    ReleaseVersionCodeDto versionCode;
 
     ReleaseResponseDto({
         required this.title,
@@ -21,7 +23,8 @@ class ReleaseResponseDto {
         required this.updatedAt,
         required this.id,
         required this.quarter,
-        required this.commercialFigure
+        required this.commercialFigure,
+        required this.versionCode
     });
 
     factory ReleaseResponseDto.fromJson(Map<String, dynamic> json) => ReleaseResponseDto(
@@ -33,7 +36,8 @@ class ReleaseResponseDto {
         updatedAt: DateTime.parse(json["updatedAt"]),
         id: json["_id"], 
         quarter: json["quarter"], 
-        commercialFigure: json["commercial_figure"],
+        commercialFigure: json["commercial_figure"], 
+        versionCode: ReleaseVersionCodeDto.fromJson(json["version_code"]),
     );
 
     Map<String, dynamic> toJson() => {

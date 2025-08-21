@@ -4,6 +4,7 @@ import 'package:flutter_template/features/release/application/dtos/create_releas
 import 'package:flutter_template/features/release/application/providers/form_release/form_release_notifier.dart';
 import 'package:flutter_template/features/release/application/use_cases/use_cases.dart';
 import 'package:flutter_template/features/release/domain/entities/entities.dart';
+import 'package:flutter_template/features/version_codes/presentation/providers/version_codes_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'releases_provider.g.dart';
@@ -22,11 +23,15 @@ class Releases extends _$Releases{
 
     Future<void> fetchAllReleases() async {
 
-      final response = await useCases.getAllReleases.execute();
+      final versionCode = ref.read(versionCodesProvider).versionCodeSelected;
+
+      final response = await useCases.getAllReleases(versionCode:versionCode);
 
       if(response is DataSuccess){
 
-        state = state.copyWith(releases: response.data);
+        state = state.copyWith(
+          releases: Map<String, ReleaseEntity>.from(response.data ?? <String, ReleaseEntity>{}),
+        );
 
       }
 
@@ -47,10 +52,11 @@ class Releases extends _$Releases{
         quarter: 1, 
         commercialFigure: commercialFigure,
         fileBytes: formReleaseState.fileBytes,
-        fileName: formReleaseState.fileName
+        fileName: formReleaseState.fileName, 
+        versionCode: formReleaseState.versionCode
       );
 
-      final response = await useCases.createNewRelease.execute(requestDto: requestDto);
+      final response = await useCases.createNewRelease(requestDto: requestDto);
 
       if(response is DataSuccess){
 
