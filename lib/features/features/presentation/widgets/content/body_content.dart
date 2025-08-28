@@ -22,16 +22,17 @@ class BodyContent extends StatelessWidget {
         Text(
           feature.title,
           style: GoogleFonts.lora(
-            fontSize: 27,
+            fontSize: 24,
             color: Colors.black,
             fontWeight: FontWeight.bold
           ),
-          maxLines: 5,
+          maxLines: 3,
         ),
+        Gap(15),
         QuantityUsersFeature(
           featureEntity: feature,
         ),
-        Gap(5),
+        Gap(15),
         Text(
           feature.description,
           style: GoogleFonts.quicksand(

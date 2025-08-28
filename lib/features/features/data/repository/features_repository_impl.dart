@@ -1,6 +1,8 @@
+import 'package:dartz/dartz.dart';
 import 'package:flutter_template/core/resources/data_state.dart';
 import 'package:flutter_template/features/features/application/dtos/create_feature_request_dto.dart';
 import 'package:flutter_template/features/features/application/dtos/create_feature_survey_dto.dart';
+import 'package:flutter_template/features/features/application/dtos/update_feature_request_dto.dart';
 import 'package:flutter_template/features/features/application/dtos/update_feature_survey_request_dto.dart';
 import 'package:flutter_template/features/features/data/data.dart';
 import 'package:flutter_template/features/features/domain/domain.dart';
@@ -14,9 +16,9 @@ class FeaturesRepositoryImpl implements FeaturesRepository  {
   });
   
   @override
-  Future<DataState<Map<String, FeatureEntity>>> fetchAllFeatures() async {
+  Future<DataState<Map<String, FeatureEntity>>> fetchAllFeatures({required String versionCode}) async {
 
-    final remoteResponse = await remoteDataSource.fetchAllFeatures();
+    final remoteResponse = await remoteDataSource.fetchAllFeatures(versionCode: versionCode);
 
     if(remoteResponse is DataSuccess){
 
@@ -82,6 +84,20 @@ class FeaturesRepositoryImpl implements FeaturesRepository  {
       return DataFailed(remoteResponse.error!);
 
     }
+
+  }
+
+  @override
+  Future<Either<String,FeatureEntity>> updateFeature({required UpdateFeatureRequestDto request}) async {
+
+
+    final remoteResponse = await remoteDataSource.updateFeature(request: request);
+
+    return remoteResponse.fold(
+      (l) => Left(l),
+      (r) => Right(GetAllFeaturesMapper.fromDto(r))
+    );  
+
 
   }
 

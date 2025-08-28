@@ -13,6 +13,10 @@ class LogoWiget extends ConsumerWidget {
 
     final commercialFigures = ref.watch(authProvider).commercialFigures;
 
+    if(commercialFigures.isEmpty){
+      return SizedBox();
+    }
+
     return ClipRRect(
       borderRadius: BorderRadius.circular(10),
       child: Container(

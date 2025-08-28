@@ -41,6 +41,12 @@ class FormStateNotifier extends StateNotifier<FormState> {
     state = state.copyWith(improvements: improvements);
   }
 
+  void updateVersionCode({required String value}) {
+    state = state.copyWith(
+      versionCode: value
+    );
+  }
+
   void resetForm() {
     state = FormState();
   }

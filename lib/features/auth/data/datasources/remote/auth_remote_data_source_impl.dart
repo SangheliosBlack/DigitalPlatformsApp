@@ -1,6 +1,8 @@
+import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_template/core/core.dart';
 import 'package:flutter_template/features/auth/data/dtos/commercial_figures_response_dto.dart';
+import 'package:flutter_template/features/auth/data/dtos/user_dto.dart';
 import 'package:flutter_template/features/auth/data/dtos/user_login_response_dto.dart';
 import 'package:flutter_template/features/auth/domain/params/login_params.dart';
 import 'auth_remote_data_source.dart';
@@ -59,27 +61,22 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   }
   
   @override
-  Future<DataState<UserLoginResponseDTO>> refreshToken() async {
+  Future<Either<String,UserDTO>> userMe() async {
 
-    final response = await httpClientService.get(path: '/auth/login');
+    final response = await httpClientService.get(path: '/auth/userMe');
 
      if(response.statusCode == 200){
 
         final apiResponse = ApiResponse<Map<String, dynamic>>.fromJson(response.data);
         
-        final userLoginResponseDTO = UserLoginResponseDTO.fromJson(apiResponse.data!);
+        final userLoginResponseDTO = UserDTO.fromJson(apiResponse.data!["user"]);
 
-        return DataSuccess(userLoginResponseDTO);
+        return Right(userLoginResponseDTO);
 
 
       }else{
 
-        return DataFailed(DioException(
-          message: "The server returned an empty response. This could be due to an issue with the server or a timeout. Please try again later.",
-          requestOptions: RequestOptions(
-            path: '/api/${Environments.API_VERSION}/${Environments.ENVIROMENT}/auth/login',
-          ),
-        ));
+        return Left("The server returned an empty response. This could be due to an issue with the server or a timeout. Please try again later.");
 
       }
 

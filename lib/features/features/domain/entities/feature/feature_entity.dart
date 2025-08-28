@@ -1,6 +1,7 @@
 
 import 'package:flutter_template/features/features/domain/entities/feature/feature_answer_suvery_entity.dart';
 import 'package:flutter_template/features/features/domain/entities/feature/list_improvements_entity.dart';
+import 'package:flutter_template/features/release/domain/entities/release_version_code_entity.dart';
 import 'package:flutter_template/features/shared/shared.dart';
 
 class FeatureEntity {
@@ -19,6 +20,7 @@ class FeatureEntity {
   List<FeatureAnswerEntity> featureAnswers;
   AnswerSurveryEntity answerSurvey;
   String commercialFigure;
+  VersionCodeMinEntity versionCode;
 
   FeatureEntity({
     required this.id,
@@ -34,7 +36,8 @@ class FeatureEntity {
     required this.description,
     required this.featureAnswers,
     required this.answerSurvey,
-    required this.commercialFigure
+    required this.commercialFigure,
+    required this.versionCode
   });
   
 }

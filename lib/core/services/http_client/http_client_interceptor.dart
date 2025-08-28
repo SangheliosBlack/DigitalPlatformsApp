@@ -103,7 +103,7 @@ bool _isPublicEndpoint(String path) {
         ),
       );
 
-      final response = await dio.post(
+      final response = await dio.get(
         '/users/${Environments.ENVIROMENT}/user/RefreshToken',
         data: {"RefreshToken": refreshToken},
       );
