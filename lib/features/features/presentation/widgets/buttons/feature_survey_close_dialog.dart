@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:flutter_template/core/config/themes/main_theme.dart';
 import 'package:flutter_template/features/features/application/providers/features_provider.dart';
+import 'package:flutter_template/features/features/application/providers/form_feature/edit_form_feature_notifier.dart';
 
 class FeatureSurveyCloseDialog extends ConsumerWidget {
 
@@ -20,6 +21,7 @@ class FeatureSurveyCloseDialog extends ConsumerWidget {
           onTap: () {
 
             ref.read(featuresProvider.notifier).resetFeatureSurver();
+            ref.read(editFormFeatureProvider.notifier).resetForm();
           
             Navigator.pop(context);
             

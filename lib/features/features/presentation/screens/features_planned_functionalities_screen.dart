@@ -1,13 +1,15 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_template/features/features/features.dart';
 import 'package:flutter_template/features/shared/shared.dart';
 import 'package:flutter_template/features/admin/admin.dart';
 import 'package:bootstrap_icons/bootstrap_icons.dart';
 import 'package:flutter_template/core/core.dart';
+import 'package:flutter_template/features/version_codes/presentation/providers/version_codes_provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
-class FeaturesPlannedFuncionlitiesScreen extends StatelessWidget {
+class FeaturesPlannedFuncionlitiesScreen extends ConsumerWidget {
 
   static const String path = "/admin/features/planned_functionalities";
 
@@ -16,7 +18,9 @@ class FeaturesPlannedFuncionlitiesScreen extends StatelessWidget {
   const FeaturesPlannedFuncionlitiesScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context,ref) {
+
+    final versionCode = ref.watch(versionCodesProvider).getCurrentVersionCode;
 
     return Container(
       color: Colors.white,
@@ -42,7 +46,7 @@ class FeaturesPlannedFuncionlitiesScreen extends StatelessWidget {
                     size: 18,
                   ),
                   Text(
-                    "Q1",
+                    versionCode?.code.toString() ?? "",
                     style: GoogleFonts.quicksand(
                       color: Colors.black,
                       fontSize: 25

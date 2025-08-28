@@ -1,16 +1,14 @@
-import 'package:flutter_template/core/resources/data_state.dart';
-import 'package:flutter_template/core/usecase/usecase.dart';
+import 'package:dartz/dartz.dart';
 import 'package:flutter_template/features/auth/domain/entities/user_entity.dart';
 import 'package:flutter_template/features/auth/domain/repository/auth_repository.dart';
 
-class LoadUserCase implements Usecase<DataState<UserEntity>, Object> {
+class LoadUserCase {
 
   final AuthRepository _authRepository;
 
   LoadUserCase(this._authRepository);
   
-  @override
-  Future<DataState<UserEntity>> execute({required Object params}) {
+  Future<Either<String,UserEntity>> call() {
     
     return _authRepository.loadUser();
   }

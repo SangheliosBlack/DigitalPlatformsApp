@@ -1,16 +1,16 @@
-class ReleaseVersionCodeDto {
+class VersionCodeMinDto {
 
   final String id;
   final String code;
 
-  ReleaseVersionCodeDto({
+  VersionCodeMinDto({
     required this.id,
     required this.code,
   });
 
-  factory ReleaseVersionCodeDto.fromJson(Map<String, dynamic> json) {
-    return ReleaseVersionCodeDto(
-      id: json["id"] ?? "",
+  factory VersionCodeMinDto.fromJson(Map<String, dynamic> json) {
+    return VersionCodeMinDto(
+      id: json["_id"] ?? "",
       code: json["code"] ?? "",
     );
   }

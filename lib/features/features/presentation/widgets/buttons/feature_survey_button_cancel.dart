@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_template/features/features/application/providers/features_provider.dart';
+import 'package:flutter_template/features/features/application/providers/form_feature/edit_form_feature_notifier.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +16,7 @@ class FeatureSurveryButtonCancel extends ConsumerWidget {
       onTap: (){
 
         ref.read(featuresProvider.notifier).resetFeatureSurver();
+        ref.read(editFormFeatureProvider.notifier).resetForm();
 
         context.pop();
 
@@ -30,7 +32,7 @@ class FeatureSurveryButtonCancel extends ConsumerWidget {
           "Cancelar",
           style: GoogleFonts.quicksand(
             color:  Colors.black.withAlpha(100),
-            fontWeight: FontWeight.w600,
+            fontWeight: FontWeight.w500,
             fontSize: 15
           ),
         ),

@@ -34,7 +34,7 @@ class PlannedFunctionalitiesList extends ConsumerWidget {
             crossAxisSpacing: 10, 
             mainAxisSpacing: 10, 
             childAspectRatio: 1.1,
-            mainAxisExtent: 300
+            mainAxisExtent: 370
           ),
           itemCount: plannedFunctionalities.length,
           itemBuilder: (_, i) {

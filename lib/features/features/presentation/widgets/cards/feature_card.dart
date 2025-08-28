@@ -77,6 +77,8 @@ class FeatureCard extends ConsumerWidget {
                       Spacer(),
                       UserCreateByLabel(
                         user: feature.user,
+                        feature: feature, 
+                        showEdit: false,
                       )
                     ],
                   ),

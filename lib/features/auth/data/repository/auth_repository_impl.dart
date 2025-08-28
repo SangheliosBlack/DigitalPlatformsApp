@@ -1,8 +1,9 @@
-import 'package:dio/dio.dart';
+import 'package:dartz/dartz.dart';
 import 'package:flutter_template/core/resources/data_state.dart';
 import 'package:flutter_template/features/auth/data/datasources/data_sources.dart';
 import 'package:flutter_template/features/auth/data/mappers/conmmercial_figure_mapper.dart';
 import 'package:flutter_template/features/auth/data/mappers/login_user_response_mapper.dart';
+import 'package:flutter_template/features/auth/data/mappers/user_mapper_response.dart';
 import 'package:flutter_template/features/auth/domain/domain.dart';
 import 'package:flutter_template/features/auth/domain/entities/commercial_figure_entity.dart';
 import 'package:flutter_template/features/auth/domain/entities/user_entity.dart';
@@ -40,22 +41,35 @@ class AuthRepositoryImpl implements AuthRepository {
   }
   
   @override
-  Future<DataState<UserEntity>> loadUser() async {
+  Future<Either<String,UserEntity>> loadUser() async {
 
     final localResponse = await localDataSource.getCachedUser();
 
-    if(localResponse is DataSuccess){
+    return localResponse.fold(
+      (error)  async{
 
-      return DataSuccess(localResponse!.data!);
+        final remoteUserMe = await remoteDataSource.userMe();
 
-    }else{
+        return remoteUserMe.fold(
+          (remoteError) => Left(remoteError),
+          (remoteData) async {
 
-      return DataFailed(DioException(
-        requestOptions: RequestOptions(path: ''),
-        error: 'No cached user found',
-      ));
+            final userEntity = UserMapper.toEntity(remoteData);
 
-    }
+            await localDataSource.saveUser(userEntity);
+
+            return Right(userEntity);
+
+          },
+        );
+
+      },
+      (data) {
+
+        return Right(data);
+
+      } 
+    );
     
   }
 
@@ -73,6 +87,24 @@ class AuthRepositoryImpl implements AuthRepository {
     }
     
     return DataFailed(remoteResponse.error!);
+
+  }
+
+  @override
+  Future<Either<String, UserEntity>> userMe() async {
+
+    final remoteResponse = await remoteDataSource.userMe();
+
+    return remoteResponse.fold(
+      (error) => Left(error),
+      (data) {
+
+        final userEntity = UserMapper.toEntity(data);
+
+        return Right(userEntity);
+
+      },
+    );
 
   }
 

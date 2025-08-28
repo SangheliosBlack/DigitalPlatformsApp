@@ -3,6 +3,7 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_template/core/config/themes/main_theme.dart';
+import 'package:flutter_template/features/features/application/providers/features_provider.dart';
 import 'package:flutter_template/features/release/application/providers/releases_provider.dart';
 import 'package:flutter_template/features/version_codes/domain/entities/version_code_entity.dart';
 import 'package:flutter_template/features/version_codes/presentation/providers/version_codes_provider.dart';
@@ -44,6 +45,8 @@ class _VersionCodeSelectorButtonState
             ref.read(versionCodesProvider.notifier).updateSelectedFilter(versionCode: value ?? "");
             
             ref.read(releasesProvider.notifier).fetchAllReleases();
+
+            ref.read(featuresProvider.notifier).fetchAllFeatures();
 
           },
           menuItemStyleData: const MenuItemStyleData(
@@ -113,6 +116,10 @@ class _VersionCodeSelectorButtonState
                   onTap: (){
 
                     ref.read(versionCodesProvider.notifier).updateSelectedFilter(versionCode: "");
+
+                       ref.read(releasesProvider.notifier).fetchAllReleases();
+
+                      ref.read(featuresProvider.notifier).fetchAllFeatures();
 
                   },
                   child: Container(

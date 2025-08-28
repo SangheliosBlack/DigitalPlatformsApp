@@ -4,6 +4,7 @@ class FormState {
   final String? emailError;
   final String? passwordError;
   final List<String> improvements;
+  final String versionCode;
 
   FormState({
     this.title = '',
@@ -11,6 +12,7 @@ class FormState {
     this.emailError,
     this.passwordError,
     this.improvements = const [],
+    this.versionCode = ""
   });
 
   bool get isValid {
@@ -23,6 +25,7 @@ class FormState {
     String? emailError,
     String? passwordError,
     List<String>? improvements,
+    String? versionCode
   }) {
     return FormState(
       title: title ?? this.title,
@@ -30,6 +33,7 @@ class FormState {
       emailError: emailError ?? this.emailError,
       passwordError: passwordError ?? this.passwordError,
       improvements: improvements ?? this.improvements,
+      versionCode: versionCode ?? this.versionCode
     );
   }
 }

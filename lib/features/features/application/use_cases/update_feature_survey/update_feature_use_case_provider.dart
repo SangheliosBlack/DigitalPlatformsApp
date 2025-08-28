@@ -3,11 +3,11 @@ import 'package:flutter_template/features/features/application/use_cases/update_
 import 'package:flutter_template/features/features/domain/domain.dart';
 import 'package:flutter_template/features/features/domain/repository/features_repository_provider.dart';
 
-final updateFeatureSurveyUseCaseProvider = Provider<UpdateFeatureUseCase>((ref){
+final updateFeatureSurveyUseCaseProvider = Provider<UpdateFeatureSurveyUseCase>((ref){
 
   final FeaturesRepository repository = ref.watch(featuresRepositoryProvider);
 
-  return UpdateFeatureUseCase(
+  return UpdateFeatureSurveyUseCase(
     repository: repository
   );
 

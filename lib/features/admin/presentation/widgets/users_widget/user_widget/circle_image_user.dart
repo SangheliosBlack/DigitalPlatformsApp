@@ -13,7 +13,8 @@ class AdminUserImageWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ref) {
 
-    final authState = ref.read(authProvider);
+    final authState = ref.watch(authProvider);
+
 
     return Container(
       padding: EdgeInsets.all(3),
@@ -34,7 +35,7 @@ class AdminUserImageWidget extends ConsumerWidget {
         ),
         child: Center(
           child: Text(
-            AvatarName.getAvatarLetters(name: authState.user!.name),
+            AvatarName.getAvatarLetters(name: authState.user?.name ?? ""),
             style: GoogleFonts.quicksand(
               color: Colors.white,
               fontWeight: FontWeight.w600,
