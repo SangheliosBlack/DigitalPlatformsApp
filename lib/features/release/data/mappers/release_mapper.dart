@@ -17,7 +17,7 @@ class ReleaseMapper {
       id: dto.id,
       quarter: dto.quarter,
       commercialFigure: dto.commercialFigure, 
-      codeVersion: ReleaseVersionCodeMapper.fromDto(dto: dto.versionCode)
+      codeVersion: VersionCodeMinMapper.fromDto(dto: dto.versionCode)
     );
 
   }

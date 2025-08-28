@@ -42,32 +42,35 @@ class UserDataCard extends StatelessWidget {
           height: 40,
           color: Colors.grey.withAlpha(50),
         ),
-        Container(
-          padding: EdgeInsets.symmetric(
-            vertical: 7,
-            horizontal: 15
-          ),
-          decoration: BoxDecoration(
-            color: AppTheme.backgroundColorSencondary,
-            borderRadius: BorderRadius.circular(100)
-          ),
-          child: Row(
-            spacing: 10,
-            children: [
-              Icon(
-                BootstrapIcons.calendar_minus,
-                color: Color.fromRGBO(35,34,64,1),
-                size: 13,
-              ),
-              Text(
-                "Q1",
-                style: GoogleFonts.roboto(
+        Offstage(
+          offstage: true,
+          child: Container(
+            padding: EdgeInsets.symmetric(
+              vertical: 7,
+              horizontal: 15
+            ),
+            decoration: BoxDecoration(
+              color: AppTheme.backgroundColorSencondary,
+              borderRadius: BorderRadius.circular(100)
+            ),
+            child: Row(
+              spacing: 10,
+              children: [
+                Icon(
+                  BootstrapIcons.calendar_minus,
                   color: Color.fromRGBO(35,34,64,1),
-                  fontSize: 12,
-                  fontWeight: FontWeight.w300
+                  size: 13,
                 ),
-              )
-            ],
+                Text(
+                  "Q1",
+                  style: GoogleFonts.roboto(
+                    color: Color.fromRGBO(35,34,64,1),
+                    fontSize: 12,
+                    fontWeight: FontWeight.w300
+                  ),
+                )
+              ],
+            ),
           ),
         ),
         VersionCodeSelectorButton()

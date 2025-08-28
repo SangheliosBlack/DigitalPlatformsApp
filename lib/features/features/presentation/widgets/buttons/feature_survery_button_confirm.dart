@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_template/features/features/application/providers/features_provider.dart';
+import 'package:flutter_template/features/features/application/providers/form_feature/edit_form_feature_notifier.dart';
 import 'package:flutter_template/features/features/domain/entities/feature/feature_entity.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -9,10 +10,12 @@ import 'package:flutter_template/core/config/themes/main_theme.dart';
 class FeatureSurveryButtonConfirm extends ConsumerWidget {
 
   final FeatureEntity feature;
+  final bool edit;
 
   const FeatureSurveryButtonConfirm({
     super.key,
-    required this.feature
+    required this.feature,
+    required this.edit
   });
 
   @override
@@ -20,8 +23,28 @@ class FeatureSurveryButtonConfirm extends ConsumerWidget {
 
     final isComplete = ref.watch(featuresProvider).isSurveyComplete;
 
+    final isEditComplete = ref.watch(editFormFeatureProvider).isValid;
+
     return GestureDetector(
       onTap: () async {
+
+        if(edit && !isEditComplete) return;
+
+        if(edit && isEditComplete){
+
+          await ref.read(featuresProvider.notifier).updateFeature(
+            featureId: feature.id, 
+            title: ref.read(editFormFeatureProvider).title, 
+            description: ref.read(editFormFeatureProvider).description,
+            versionCode: ref.read(editFormFeatureProvider).versionCode
+          );
+
+          // ignore: use_build_context_synchronously
+          context.pop();
+
+          return;
+          
+        }
 
         if(!isComplete) return;
 
@@ -43,14 +66,14 @@ class FeatureSurveryButtonConfirm extends ConsumerWidget {
           horizontal: 35
         ),
         decoration: BoxDecoration(
-          color: isComplete ? AppTheme.primary : Colors.grey.withAlpha(150),
+          color:  isComplete || isEditComplete ? AppTheme.primary : Colors.grey.withAlpha(150),
           borderRadius: BorderRadius.circular(20)
         ),
         child: Text(
-          feature.answerSurvey.answerComplete ? "Actulizar" :"Guardar" ,
+          edit ? "Editar" : feature.answerSurvey.answerComplete ? "Actulizar" :"Guardar" ,
           style: GoogleFonts.quicksand(
-            color: isComplete ? Colors.white : Colors.black.withAlpha(100),
-            fontWeight: FontWeight.w600,
+            color:   isComplete || isEditComplete ? Colors.white : Colors.black.withAlpha(100),
+            fontWeight: FontWeight.w500,
             fontSize: 15
           ),
         ),

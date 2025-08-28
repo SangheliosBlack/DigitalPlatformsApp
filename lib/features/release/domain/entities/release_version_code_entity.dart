@@ -1,9 +1,9 @@
-class ReleaseVersionCodeEntity {
+class VersionCodeMinEntity {
 
   final String id;
   final String code;
 
-  ReleaseVersionCodeEntity({
+  VersionCodeMinEntity({
     required this.id,
     required this.code
   });

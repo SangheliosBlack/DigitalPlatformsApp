@@ -30,6 +30,7 @@ class SurveyFeatureDialog extends StatelessWidget {
                   FeatureSurveyCloseDialog(),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
+                    spacing: 15,
                     children: [
                       ReleaseDateLabel(
                         createdAt: feature.createdAt,
@@ -44,6 +45,8 @@ class SurveyFeatureDialog extends StatelessWidget {
                   ),
                   UserCreateByLabel(
                     user: feature.user,
+                    feature: feature,
+                    showEdit: false,
                   ),
                   FeatureImprovementList(
                     feature: feature,
@@ -55,7 +58,8 @@ class SurveyFeatureDialog extends StatelessWidget {
                     children: [
                       FeatureSurveryButtonCancel(),
                       FeatureSurveryButtonConfirm(
-                        feature: feature,
+                        feature: feature, 
+                        edit: false,
                       ),
                     ],
                   )

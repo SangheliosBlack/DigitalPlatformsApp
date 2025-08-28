@@ -11,7 +11,7 @@ class ReleaseEntity {
   String id;
   int quarter;
   String commercialFigure;
-  ReleaseVersionCodeEntity codeVersion;
+  VersionCodeMinEntity codeVersion;
 
   ReleaseEntity({
     required this.title,

@@ -1,5 +1,6 @@
 import 'package:flutter_template/features/features/domain/domain.dart';
 import 'package:flutter_template/features/features/data/data.dart';
+import 'package:flutter_template/features/shared/data/mappers/features/release_version_code_mapper.dart';
 import 'package:flutter_template/features/shared/shared.dart';
 
 class GetAllFeaturesMapper {
@@ -20,7 +21,8 @@ class GetAllFeaturesMapper {
       description: dto.description, 
       featureAnswers: FeatureAnswersMapper.toEntityList(dtoList: dto.featureAnswersDto), 
       answerSurvey: FeatureAsnwerSurveyMapper.fromDto(dto: dto.answerSurveyDto),
-      commercialFigure: dto.commercialFigure
+      commercialFigure: dto.commercialFigure, 
+      versionCode: VersionCodeMinMapper.fromDto(dto: dto.versionCode)
     );
     
   }

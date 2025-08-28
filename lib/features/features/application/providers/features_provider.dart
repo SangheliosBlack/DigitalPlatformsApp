@@ -1,5 +1,7 @@
 
 import 'package:flutter_template/features/auth/presentation/providers/auth_provider.dart';
+import 'package:flutter_template/features/features/application/dtos/update_feature_request_dto.dart';
+import 'package:flutter_template/features/version_codes/presentation/providers/version_codes_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:flutter_template/core/core.dart';
 
@@ -22,9 +24,9 @@ class Features extends _$Features{
 
   Future<void> fetchAllFeatures() async {
 
-    await Future.delayed(Duration(seconds: 2));
+    final versionCode = ref.read(versionCodesProvider).versionCodeSelected;
 
-    final response = await useCases.getAllFeatures.execute();
+    final response = await useCases.getAllFeatures(versionCode:versionCode);
 
     if(response is DataSuccess){
 
@@ -39,7 +41,7 @@ class Features extends _$Features{
     final requestDto = CreateFeatureSurveyRequestDto(
       ratingFeature: state.featureAnswerId, 
       feature: featureId, 
-      comment: state.comment 
+      comment: state.comment
     );
 
     final response = await useCases.createFeatureSurvey.execute(request: requestDto);
@@ -59,7 +61,34 @@ class Features extends _$Features{
     
   }
 
-   Future<void> updateFeatureSurvey ({required String surveyId }) async {
+  Future<void> updateFeature ({required String featureId, required String title, required String description, required String versionCode}) async {
+
+    final requestDto = UpdateFeatureRequestDto(
+      title: title, 
+      description: description, 
+      featureId: featureId,
+      versionCode: versionCode
+    );
+
+    final response = await useCases.updateFeature(request: requestDto);
+
+    response.fold(
+      (error){
+
+      },
+      (data){
+
+        final updatedMap = Map<String, FeatureEntity>.from(state.features);
+
+        updatedMap[data.id] = data; 
+
+        state = state.copyWith(features: updatedMap);
+
+      });
+
+  }
+
+  Future<void> updateFeatureSurvey ({required String surveyId }) async {
 
     final requestDto = UpdateFeatureSurveyRequestDto(
       ratingFeature: state.featureAnswerId, 
@@ -95,7 +124,8 @@ class Features extends _$Features{
       description: formFeatureState.description,
       status: status,
       listImprovements: formFeatureState.improvements,
-      commercialFigure:commercialFigureSelected
+      commercialFigure:commercialFigureSelected, 
+      versionCode: formFeatureState.versionCode
     );
 
     final response = await useCases.createFeature.execute(request: request);

@@ -5,6 +5,7 @@ import 'package:flutter_template/core/services/auth_service/authentication_servi
 import 'package:flutter_template/core/services/cache_service/cache_service_impl.dart';
 import 'package:flutter_template/core/services/navigation_service/navigation_service.dart';
 import 'package:flutter_template/features/auth/application/use_cases/get_commercial_figures/get_commercial_figures_use_case_provider.dart';
+import 'package:flutter_template/features/auth/domain/entities/commercial_figure_entity.dart';
 import 'package:flutter_template/features/features/presentation/screens/releases_screen.dart';
 import 'package:flutter_template/features/auth/presentation/providers/auth_state.dart';
 import 'package:flutter_template/features/auth/domain/params/login_params.dart';
@@ -76,17 +77,18 @@ class Auth extends _$Auth{
 
   }
 
-  Future<void> getAllCommercialFigues() async {
+  Future<List<CommercialFigureEntity>> getAllCommercialFigues() async {
 
     final useCase = await ref.read(getCommercialFiguresUseCaseProvider).execute();
 
     if(useCase is DataSuccess){
 
-      state = state.copyWith(
-        commercialFigures: useCase.data
-      );
+
+      return useCase.data!;
 
     }
+
+    return [];
 
 
   }
@@ -95,19 +97,33 @@ class Auth extends _$Auth{
 
     try {
       
-      final useCase = await ref.read(loadUserCaseProvider).execute(params: Object());
+      final useCase = await ref.read(loadUserCaseProvider).call();
 
-      await getAllCommercialFigues();
+      useCase.fold(
+        (failure) {
+          state = state.copyWith(
+            errorMessage: failure,
+            isLoading: false,
+          );
+        },
+        (user) async {
 
-      state = state.copyWith(
-        user: useCase.data
+          final commercialFigures = await getAllCommercialFigues();
+
+          state = state.copyWith(
+            user: user,
+            isLoading: false,
+            authenticationStatus: AuthenticationStatus.authenticated,
+            commercialFigures: commercialFigures
+          );
+        },
       );
     
       return;
 
     } catch (e) {
 
-      logout();
+       logout();
       
     }
 

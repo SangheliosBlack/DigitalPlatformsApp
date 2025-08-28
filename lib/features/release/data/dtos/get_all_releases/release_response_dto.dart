@@ -12,7 +12,7 @@ class ReleaseResponseDto {
     String id;
     int quarter;
     String commercialFigure;
-    ReleaseVersionCodeDto versionCode;
+    VersionCodeMinDto versionCode;
 
     ReleaseResponseDto({
         required this.title,
@@ -37,7 +37,7 @@ class ReleaseResponseDto {
         id: json["_id"], 
         quarter: json["quarter"], 
         commercialFigure: json["commercial_figure"], 
-        versionCode: ReleaseVersionCodeDto.fromJson(json["version_code"]),
+        versionCode: VersionCodeMinDto.fromJson(json["version_code"]),
     );
 
     Map<String, dynamic> toJson() => {

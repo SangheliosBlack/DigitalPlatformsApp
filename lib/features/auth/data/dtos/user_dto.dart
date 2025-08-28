@@ -16,7 +16,7 @@ class UserDTO {
     required this.roleName
   });
 
-  factory UserDTO.fromMap(Map<String, dynamic> map) {
+  factory UserDTO.fromJson(Map<String, dynamic> map) {
     return UserDTO(
       id: map['id'],
       email: map['email'],

@@ -1,4 +1,5 @@
 import 'package:flutter_template/features/admin/admin.dart';
+import 'package:flutter_template/features/features/presentation/widgets/new_feature_version_code_selector.dart';
 import 'package:flutter_template/helpers/helpers.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
@@ -33,6 +34,7 @@ class AddNewFeatureDialog extends StatelessWidget {
           Column(
             children: [
               TitleFieldNewFeatureDialog(),
+              NewFeatureSelectVersionCode(),
               DescripcionFieldNewFeatureDialog(),
               DynamicImproveFieldNewFeatureWidget()
             ],

@@ -1,8 +1,7 @@
 // auth_local_data_source_impl.dart
-import 'package:dio/dio.dart';
+import 'package:dartz/dartz.dart';
 import 'package:flutter_template/core/constants/hive_box_constants.dart';
 import 'package:flutter_template/core/constants/local_storage_keys.dart';
-import 'package:flutter_template/core/resources/data_state.dart';
 import 'package:flutter_template/core/services/cache_service/cache_service_impl.dart';
 import 'package:flutter_template/core/services/local_storage/local_storage_service_impl.dart';
 import 'package:flutter_template/features/auth/data/datasources/local/auth_local_data_source.dart';
@@ -22,19 +21,18 @@ class AuthLocalDataSourceImpl implements AuthLocalDataSource {
   }
 
   @override
-  Future <DataState<UserEntity>>? getCachedUser() async {
+  Future <Either<String,UserEntity>> getCachedUser() async {
+
     
     final UserEntity? userEntity =  await CacheServiceImpl().getData(key: HiveBoxConstants.saveUser);
 
     if(userEntity != null){
 
-      return DataSuccess(userEntity);
+      return Right(userEntity);
       
     }else{
 
-      final error =  DioException(requestOptions: RequestOptions(path: ''),message: "Expired User Entity TTL");
-
-      return DataFailed(error);
+      return Left("Expired User Entity TTL");
 
     }
 

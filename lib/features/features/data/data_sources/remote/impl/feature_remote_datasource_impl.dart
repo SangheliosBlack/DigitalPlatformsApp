@@ -1,5 +1,7 @@
+import 'package:dartz/dartz.dart';
 import 'package:flutter_template/features/features/application/dtos/create_feature_request_dto.dart';
 import 'package:flutter_template/features/features/application/dtos/create_feature_survey_dto.dart';
+import 'package:flutter_template/features/features/application/dtos/update_feature_request_dto.dart';
 import 'package:flutter_template/features/features/application/dtos/update_feature_survey_request_dto.dart';
 import 'package:flutter_template/features/features/data/data_sources/datasources.dart';
 import 'package:flutter_template/features/features/data/dtos/dtos.dart';
@@ -13,11 +15,11 @@ class FeatureRemoteDatasourceImpl implements FeaturesRemoteDataSource {
   FeatureRemoteDatasourceImpl({required this.httpClientService});
 
   @override
-  Future<DataState<GetAllFeaturesListDto>> fetchAllFeatures() async {
+  Future<DataState<GetAllFeaturesListDto>> fetchAllFeatures({required String versionCode}) async {
 
     try {
       
-      final response = await httpClientService.get(path: '/features');
+      final response = await httpClientService.get(path: '/features?version=$versionCode');
 
      if(response.statusCode == 200){
 
@@ -167,6 +169,36 @@ class FeatureRemoteDatasourceImpl implements FeaturesRemoteDataSource {
           path: '/api/${Environments.API_VERSION}/${Environments.ENVIROMENT}/features',
         ),
       ));
+
+    }
+
+  }
+
+  @override
+  Future<Either<String, FeatureDto>> updateFeature({required UpdateFeatureRequestDto request}) async {
+  
+    try {
+
+      final response = await httpClientService.patch(path: '/features/${request.featureId}',data: request.toJson());
+
+      if(response.statusCode == 200){
+
+        final apiResponse = ApiResponse<Map<String, dynamic>>.fromJson(response.data);
+
+        final featureResponseDto = FeatureDto.fromJson(apiResponse.data!);
+
+        return Right(featureResponseDto);
+
+      }else{
+
+        return  Left("The server returned an empty response. This could be due to an issue with the server or a timeout. Please try again later.");
+
+      }
+
+
+    } on NetworkException catch (e) {
+
+      return Left(e.message);
 
     }
 

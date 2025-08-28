@@ -7,9 +7,9 @@ class GetAllFeaturesUseCase {
 
   GetAllFeaturesUseCase({required this.repository});
 
-  Future<DataState<Map<String, FeatureEntity>>>  execute(){
+  Future<DataState<Map<String, FeatureEntity>>> call({required String versionCode}){
 
-    return repository.fetchAllFeatures();
+    return repository.fetchAllFeatures(versionCode: versionCode);
 
   }
 

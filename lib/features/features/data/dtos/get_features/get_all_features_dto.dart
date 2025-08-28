@@ -1,4 +1,5 @@
 import 'package:flutter_template/features/features/data/dtos/get_features/get_all_features.dart';
+import 'package:flutter_template/features/release/data/dtos/get_all_releases/release_code_version_dto.dart';
 import 'package:flutter_template/features/shared/shared.dart';
 
 class FeatureDto {
@@ -17,6 +18,7 @@ class FeatureDto {
   final List<FeatureAnswersDto> featureAnswersDto;
   final FeatureAnswerSurveyDto answerSurveyDto;
   final String commercialFigure;
+  final VersionCodeMinDto versionCode;
 
   FeatureDto({
     required this.id,
@@ -32,7 +34,8 @@ class FeatureDto {
     required this.description,
     required this.featureAnswersDto,
     required this.answerSurveyDto,
-    required this.commercialFigure
+    required this.commercialFigure,
+    required this.versionCode
   });
 
   factory FeatureDto.fromJson(Map<String, dynamic> json) {
@@ -55,7 +58,8 @@ class FeatureDto {
       answerSurveyDto: json["answer_survey"] != null 
           ? FeatureAnswerSurveyDto.fromJson(json["answer_survey"]) 
           : FeatureAnswerSurveyDto.defautlValue(), 
-      commercialFigure: json["commercial_figure"],
+      commercialFigure: json["commercial_figure"], 
+      versionCode: VersionCodeMinDto.fromJson(json["version_code"])
     );
   }
 
