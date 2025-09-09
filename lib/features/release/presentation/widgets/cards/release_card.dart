@@ -1,9 +1,11 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_template/core/config/themes/main_theme.dart';
 import 'package:flutter_template/core/utils/dates/date_time_utils.dart';
 import 'package:flutter_template/features/release/domain/entities/release_entity.dart';
 import 'package:flutter_template/features/release/presentation/widgets/code_version_label.dart';
 import 'package:flutter_template/features/release/presentation/widgets/video_player_widget.dart';
+import 'package:flutter_template/features/release/presentation/widgets/simple_web_video_widget.dart';
 import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -19,11 +21,18 @@ class ReleaseCard extends StatelessWidget {
   Widget _buildMediaWidget() {
 
     if (release.mediaUrl != null && release.mediaUrl!.isNotEmpty) {
-
-      return VideoPlayerWidget(
-        videoUrl: release.mediaUrl!,
-        maxHeight: 400.0,
-      );
+      // Usar widget específico para cada plataforma
+      if (kIsWeb) {
+        return SimpleWebVideoWidget(
+          videoUrl: release.mediaUrl!,
+          maxHeight: 400.0,
+        );
+      } else {
+        return VideoPlayerWidget(
+          videoUrl: release.mediaUrl!,
+          maxHeight: 400.0,
+        );
+      }
 
     }
     
