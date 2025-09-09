@@ -6,6 +6,7 @@ class ReleaseResponseDto {
     String title;
     String description;
     String? imageUrl;
+    String? mediaUrl;
     UserFeatureDto user;
     DateTime createdAt;
     DateTime updatedAt;
@@ -18,6 +19,7 @@ class ReleaseResponseDto {
         required this.title,
         required this.description,
         required this.imageUrl,
+        required this.mediaUrl,
         required this.user,
         required this.createdAt,
         required this.updatedAt,
@@ -37,7 +39,8 @@ class ReleaseResponseDto {
         id: json["_id"], 
         quarter: json["quarter"], 
         commercialFigure: json["commercial_figure"], 
-        versionCode: VersionCodeMinDto.fromJson(json["version_code"]),
+        versionCode: VersionCodeMinDto.fromJson(json["version_code"]), 
+        mediaUrl: json["media_url"],
     );
 
     Map<String, dynamic> toJson() => {

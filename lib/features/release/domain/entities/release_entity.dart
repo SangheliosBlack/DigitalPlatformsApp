@@ -5,6 +5,7 @@ class ReleaseEntity {
   String title;
   String description;
   String? imageUrl;
+  String? mediaUrl;
   UserProfileEntity user;
   DateTime createdAt;
   DateTime updatedAt;
@@ -17,6 +18,7 @@ class ReleaseEntity {
     required this.title,
     required this.description,
     required this.imageUrl,
+    required this.mediaUrl,
     required this.user,
     required this.createdAt,
     required this.updatedAt,
@@ -31,6 +33,7 @@ class ReleaseEntity {
       'title': title,
       'description': description,
       'imageUrl': imageUrl,
+      'mediaUrl': mediaUrl,
       'user': user.toMap(), 
       'createdAt': createdAt.toIso8601String(),
       'updatedAt': updatedAt.toIso8601String(),
